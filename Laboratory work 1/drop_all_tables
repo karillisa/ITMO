@@ -1,0 +1,8 @@
+DROP TABLE characteristics;
+DROP TABLE lizardSpecies_habitatRegion;
+DROP TABLE observation_lizardSpecies;
+DROP TABLE observation;
+DROP TABLE habitatregion;
+DROP TABLE lizardspecies;
+DROP TABLE researchequipment;
+DROP TABLE researcher;

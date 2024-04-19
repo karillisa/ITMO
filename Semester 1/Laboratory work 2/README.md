@@ -4,4 +4,4 @@
 
 __Ход работы, содержание отчета и контрольные вопросы описаны в методических указаниях__
 
-![]([url_изображения](https://github.com/karillisa/OPD/blob/master/Semester%201/Laboratory%20work%202/01.png?raw=true))
+![]([url_изображения](https://github.com/[karillisa/OPD/blob/master/Semester%201/Laboratory%20work%202/01.png?raw=true)](https://github.com/karillisa/OPD/blob/master/Semester%201/Laboratory%20work%202/01.png))

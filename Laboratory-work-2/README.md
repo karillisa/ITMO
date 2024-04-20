@@ -39,7 +39,7 @@ b.go();
 
 # Мои покемоны:
 
-![](https://github.com/karillisa/OPD/blob/master/Semester%201/Laboratory%20work%201/01.png)
+![](https://github.com/karillisa/Programming-/blob/master/Laboratory-work-2/01.png)
 
 # Отчёт по работе должен содержать:
 1. Текст задания.

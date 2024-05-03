@@ -72,4 +72,3 @@ ssh -L <локальный порт>:localhost:<порт сервера> sXXXXXX
 ssh -L 3909:localhost:3909 s368283@helios.cs.ifmo.ru -p 2222
 ```
 
-Готово!

@@ -2,7 +2,7 @@
 ## Программная инженерия
 
 ### Лабораторные
-[1 - ](https://github.com/karillisa/Programming/tree/master/Semester-1/Laboratory-work-1)
+[1 - Язык Java. Особенности языка.](https://github.com/karillisa/Programming/tree/master/Semester-1/Laboratory-work-1)
 
 [2 - Покемоны](https://github.com/karillisa/Programming/tree/master/Semester-1/Laboratory-work-2)
 

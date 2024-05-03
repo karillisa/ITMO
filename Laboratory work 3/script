@@ -1,0 +1,32 @@
+CREATE OR REPLACE FUNCTION check_equipment_condition_and_age() RETURNS TRIGGER AS $$
+DECLARE
+    equipment_condition VARCHAR(50);
+    equipment_age INT;
+    current_year INT := EXTRACT(YEAR FROM CURRENT_DATE);
+BEGIN
+    -- Извлекаем состояние и год выпуска оборудования из таблицы ResearchEquipment
+    SELECT condition, year_of_manufacture INTO equipment_condition, equipment_age
+    FROM ResearchEquipment
+    WHERE equipment_id = NEW.equipment_id;
+
+    -- Вычисляем возраст оборудования
+    equipment_age := current_year - equipment_age;
+    
+    -- Проверяем состояние оборудования
+    IF equipment_condition NOT IN ('Excellent', 'Good') THEN
+        RAISE EXCEPTION 'Equipment in unsuitable condition: %', equipment_condition;
+    END IF;
+    
+    -- Проверяем возраст оборудования
+    IF equipment_age > 5 THEN
+        RAISE EXCEPTION 'Equipment is too old: % years', equipment_age;
+    END IF;
+    
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Создание триггера
+CREATE TRIGGER equipment_condition_check
+BEFORE INSERT OR UPDATE ON Observation
+FOR EACH ROW EXECUTE FUNCTION check_equipment_condition_and_age();

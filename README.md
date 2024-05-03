@@ -7,6 +7,8 @@
 
 [3 - Функциональные зависимости и NF](https://github.com/karillisa/Databases/tree/main/Laboratory%20work%203)
 
+[4 - Планы выполнения запросов](https://github.com/karillisa/Databases/tree/main/Laboratory%20work%204)
+
 
 ## Как работать с БД на Helios?
 

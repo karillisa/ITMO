@@ -4,29 +4,33 @@ DECLARE
     equipment_age INT;
     current_year INT := EXTRACT(YEAR FROM CURRENT_DATE);
 BEGIN
-    -- Извлекаем состояние и год выпуска оборудования из таблицы ResearchEquipment
+-- Извлекаем состояние и год выпуска оборудования из таблицы ResearchEquipment
     SELECT condition, year_of_manufacture INTO equipment_condition, equipment_age
     FROM ResearchEquipment
     WHERE equipment_id = NEW.equipment_id;
+ -- Проверка, найдено ли оборудование с заданным equipment_id, если нет, то генерируется исключение  
+    IF NOT FOUND THEN
+        RAISE EXCEPTION 'Equipment with ID % not found', NEW.equipment_id;
+    END IF;
 
-    -- Вычисляем возраст оборудования
+-- Расчет возраста оборудования
     equipment_age := current_year - equipment_age;
-    
-    -- Проверяем состояние оборудования
+
+-- Проверка состояния оборудования, если не соответствует требованию, то выводится исключение
     IF equipment_condition NOT IN ('Excellent', 'Good') THEN
         RAISE EXCEPTION 'Equipment in unsuitable condition: %', equipment_condition;
     END IF;
-    
-    -- Проверяем возраст оборудования
+
+-- Проверка возраста оборудования, если выше 5 лет, то генерируется исключение
     IF equipment_age > 5 THEN
         RAISE EXCEPTION 'Equipment is too old: % years', equipment_age;
     END IF;
-    
+
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
--- Создание триггера
+-- Создания триггера для выполнения функции
 CREATE TRIGGER equipment_condition_check
 BEFORE INSERT OR UPDATE ON Observation
 FOR EACH ROW EXECUTE FUNCTION check_equipment_condition_and_age();

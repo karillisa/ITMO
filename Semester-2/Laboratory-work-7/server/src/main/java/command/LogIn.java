@@ -41,7 +41,7 @@ public class LogIn extends AbsCommand{
                 statement = cnt.prepareStatement(sql);
                 statement.setString(1, name);
 
-                // хэшируем пароль алгоритмом SHA-1
+                // хэшируем пароль алгоритмом MD5
                 String passwordToHash = psswd;
                 MessageDigest md = MessageDigest.getInstance("MD5");
                 byte[] passwordBytes = passwordToHash.getBytes();

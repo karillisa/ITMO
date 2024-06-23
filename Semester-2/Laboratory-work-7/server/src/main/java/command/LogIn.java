@@ -23,13 +23,11 @@ public class LogIn extends AbsCommand{
     }
 
     @Override
-    public ObjectResAns doo(String s, TreeSet<SpaceMarine> mySet, String user) throws IOException, SQLException, NoSuchAlgorithmException {
+    public ObjectResAns doo(String s, TreeSet<SpaceMarine> mySet, String user, Connection cnt) throws IOException, SQLException, NoSuchAlgorithmException {
         String[] arg = s.split(" ");
         if(arg.length >= 3) {
             String name = arg[1];
-            String psswd = arg[2];
-            BdMng bd = new BdMng();
-            Connection cnt = bd.cnt();
+            String psswd = arg[2];;
 
             String sqlStr = "SELECT COUNT(*) FROM users WHERE login = ?";
             PreparedStatement statement = cnt.prepareStatement(sqlStr);

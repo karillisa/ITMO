@@ -32,12 +32,12 @@ public class Client {
         while (true) {
             if(!b) {
                 try {
-                    // server connection
+                    // Устанавливаем соединение с сервером
                     socket = SocketChannel.open();
                     socket.connect(new InetSocketAddress("localhost", port));
                     System.out.println("I'm connected to the server " + socket.getRemoteAddress());
 
-                    // giving from cserver
+                    // Получаем поток вводы-вывода для обмена данными с сервером
                     out = new ObjectOutputStream(socket.socket().getOutputStream());
                     in = new ObjectInputStream(socket.socket().getInputStream());
 

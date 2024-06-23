@@ -1,11 +1,10 @@
 package bd;
 
-import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
-import java.util.Properties;
 
 public class BdMng {
+
 
     public Connection cnt() throws IOException {
 
@@ -23,7 +22,7 @@ public class BdMng {
         }
     }
 
-    public ResultSet giveResOfQuery(Connection connection, String query){
+    public ResultSet giveResOfQuery(Connection connection, String query) {
         try {
             String sql = query;
             PreparedStatement statement = connection.prepareStatement(sql);

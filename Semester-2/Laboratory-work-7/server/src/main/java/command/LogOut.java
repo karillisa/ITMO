@@ -22,7 +22,7 @@ public class LogOut extends AbsCommand{
     }
 
     @Override
-    public ObjectResAns doo(String s, TreeSet<SpaceMarine> mySet, String user) throws IOException, SQLException, NoSuchAlgorithmException {
+    public ObjectResAns doo(String s, TreeSet<SpaceMarine> mySet, String user, Connection cnt) throws IOException, SQLException, NoSuchAlgorithmException {
         if(user!=null){
             return new ObjectResAns("User: "  + user + " logouted!", true, null);
         }else{

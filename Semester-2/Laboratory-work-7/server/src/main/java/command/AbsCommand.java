@@ -5,6 +5,7 @@ import objectResAns.ObjectResAns;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.TreeSet;
 
@@ -16,8 +17,10 @@ public class AbsCommand implements Command {
     }
 
     @Override
-    public ObjectResAns doo(String args, TreeSet<SpaceMarine> mySet, String user) throws SQLException, NoSuchAlgorithmException, IOException {
-        return new ObjectResAns("", true, null);
+    public ObjectResAns doo(String args, TreeSet<SpaceMarine> mySet, String user, Connection cnt) throws SQLException, NoSuchAlgorithmException, IOException {
+        synchronized (mySet) {
+            return new ObjectResAns("", true, null);
+        }
     }
 
     @Override

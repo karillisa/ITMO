@@ -4,6 +4,7 @@ import classes.SpaceMarine;
 import datas.DataParseManager;
 import objectResAns.ObjectResAns;
 
+import java.sql.Connection;
 import java.util.TreeSet;
 
 public class SaveCommand extends AbsCommand{
@@ -12,7 +13,7 @@ public class SaveCommand extends AbsCommand{
     }
 
     @Override
-    public ObjectResAns doo(String s, TreeSet<SpaceMarine> mySet, String user){
+    public ObjectResAns doo(String s, TreeSet<SpaceMarine> mySet, String user, Connection cnt){
         DataParseManager dbManager = new DataParseManager();
         try {
             /*dbManager.writeCsv(mySet, s.split(" ")[1]);*/

@@ -3,6 +3,7 @@ package command;
 import classes.SpaceMarine;
 import objectResAns.ObjectResAns;
 
+import java.sql.Connection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.TreeSet;
@@ -13,7 +14,7 @@ public class PrintFieldAscendingHealthCommand extends AbsCommand{
     }
 
     @Override
-    public ObjectResAns doo(String args, TreeSet<SpaceMarine> mySet, String user){
+    public ObjectResAns doo(String args, TreeSet<SpaceMarine> mySet, String user, Connection cnt){
         Map<Long, Integer> sortWithHealth = new LinkedHashMap<>();
 
         if(mySet.isEmpty()) {

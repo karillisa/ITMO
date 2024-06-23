@@ -4,6 +4,7 @@ package command;
 import classes.SpaceMarine;
 import objectResAns.ObjectResAns;
 
+import java.sql.Connection;
 import java.util.TreeSet;
 
 public class ShowCommand extends AbsCommand{
@@ -12,7 +13,7 @@ public class ShowCommand extends AbsCommand{
     }
 
     @Override
-    public ObjectResAns doo(String s, TreeSet<SpaceMarine> mySet, String user){
+    public ObjectResAns doo(String s, TreeSet<SpaceMarine> mySet, String user, Connection cnt){
         String allRes = new String();
 
         if (!mySet.isEmpty()) {

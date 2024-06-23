@@ -3,6 +3,7 @@ package command;
 import classes.SpaceMarine;
 import objectResAns.ObjectResAns;
 
+import java.sql.Connection;
 import java.util.TreeSet;
 
 public class CountGreaterThanChapterCommand extends AbsCommand{
@@ -11,26 +12,29 @@ public class CountGreaterThanChapterCommand extends AbsCommand{
     }
 
     @Override
-    public ObjectResAns doo(String args, TreeSet<SpaceMarine> mySet, String user){
-        String chapterName = args.split(" ")[1];
+    public ObjectResAns doo(String args, TreeSet<SpaceMarine> mySet, String user, Connection cnt){
+        String chapterName = args.split(" ")[1];  // Извлечение имени главы (chapterName) из аргументов
 
+        // Проверка, пустая ли коллекция
         if(mySet.isEmpty()){
             System.out.println("Collection is empty!");
             return new ObjectResAns("Collection is empty!", true, user);
         }
+        // Проверка корректности аргумента
         if(chapterName == null || chapterName.isEmpty()){
             System.out.println("Arg error!");
             return new ObjectResAns("Arg error!", true, user);
         }
 
-        int cnt = 0;
+        int count = 0;
+        // Подсчет элементов, у которых длина имени главы больше заданного
         for(SpaceMarine s: mySet){
             if(s.getChapter().getName().length() > chapterName.length()){
-                cnt = cnt + 1;
+                count = count + 1;
             }
         }
-
-        return new ObjectResAns("Count: " + cnt, true, user);
+        // Возвращение результата подсчета
+        return new ObjectResAns("Count: " + count, true, user);
     }
 
     @Override

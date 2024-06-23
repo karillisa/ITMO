@@ -4,6 +4,7 @@ package command;
 import classes.SpaceMarine;
 import objectResAns.ObjectResAns;
 
+import java.sql.Connection;
 import java.util.TreeSet;
 
 public class InfoCommand extends AbsCommand{
@@ -12,7 +13,7 @@ public class InfoCommand extends AbsCommand{
     }
 
     @Override
-    public ObjectResAns doo(String args, TreeSet<SpaceMarine> mySet, String user){
+    public ObjectResAns doo(String args, TreeSet<SpaceMarine> mySet, String user, Connection cnt){
         String allRes = ("id - identification number\n" +
                 "name - name of object\n" +
                 "coordinates\n" +

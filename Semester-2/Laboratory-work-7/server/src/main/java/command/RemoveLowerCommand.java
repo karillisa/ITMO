@@ -15,13 +15,18 @@ public class RemoveLowerCommand extends AbsCommand{
     }
 
     @Override
-    public ObjectResAns doo(String args, TreeSet<SpaceMarine> mySet, String user){
+    public ObjectResAns doo(String args, TreeSet<SpaceMarine> mySet, String user, Connection cnt){
         String[] idS = args.split(" ");
         long id = -111111;
         try {
             id = Long.parseLong(idS[1]);
         }catch (Exception e){
             return new ObjectResAns("Id should be a number!", true, user);
+        }
+
+        System.out.println(CommandManager.getRes(user + " " + id));
+        if(CommandManager.getRes(user + " " + id) != null && CommandManager.getRes(user + " " + id)){
+            return new ObjectResAns("Object is an editing, wait editing!", false, user);
         }
 
         String allRes = "";
@@ -33,8 +38,6 @@ public class RemoveLowerCommand extends AbsCommand{
                     boolean b = false;
                     try {
                         if (idd >= 0) {
-                            BdMng bd = new BdMng();
-                            Connection cnt = bd.cnt();
                             String sqlReUserId = "SELECT id FROM users WHERE login = ?";
                             PreparedStatement st1 = cnt.prepareStatement(sqlReUserId);
                             st1.setString(1, user);

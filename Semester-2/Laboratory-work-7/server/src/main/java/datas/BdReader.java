@@ -16,10 +16,9 @@ import java.util.HashSet;
 import java.util.TreeSet;
 
 public class BdReader {
-    public TreeSet<SpaceMarine> getAllData() throws IOException, SQLException {
+    public TreeSet<SpaceMarine> getAllData(Connection cnt) throws IOException, SQLException {
         TreeSet<SpaceMarine> mySet = new TreeSet<>();
         BdMng bd = new BdMng();
-        Connection cnt = bd.cnt();
         ResultSet rs = bd.giveResOfQuery(cnt, "SELECT * FROM labbd");
         while (rs.next()){
             Long id = (long) rs.getInt("id");

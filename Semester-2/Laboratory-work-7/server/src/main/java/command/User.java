@@ -5,6 +5,7 @@ import objectResAns.ObjectResAns;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.TreeSet;
@@ -17,7 +18,7 @@ public class User extends AbsCommand{
     }
 
     @Override
-    public ObjectResAns doo(String s, TreeSet<SpaceMarine> mySet, String user) throws IOException, SQLException, NoSuchAlgorithmException {
+    public ObjectResAns doo(String s, TreeSet<SpaceMarine> mySet, String user, Connection cnt) throws IOException, SQLException, NoSuchAlgorithmException {
         if(user!=null){
             return new ObjectResAns("User: "  + user, true, user);
         }else{

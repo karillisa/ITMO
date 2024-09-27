@@ -1,0 +1,46 @@
+package objects;
+
+import params.Size;
+
+public class Restaurant extends Building {
+    private final String name;
+    private Size size;
+    private City city;
+
+    public Restaurant(String name, Size size, City city) {
+        super(name, size, city);
+        this.name = name;
+        this.size = size;
+        this.city = city;
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public Size getSize() {
+        return size;
+    }
+
+    @Override
+    public void setSize(Size size) {
+        this.size = size;
+    }
+
+    @Override
+    public City getCity() {
+        return city;
+    }
+
+    @Override
+    public void setCity(City city) {
+        this.city = city;
+    }
+
+    @Override
+    public String toString() {
+        return size + " " + name;
+    }
+}

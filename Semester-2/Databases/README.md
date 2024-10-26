@@ -1,4 +1,4 @@
-# Databases | Программная инженерия
+# База данных | Программная инженерия
 
 ### Лабораторные
 [1 - Инфологическая и даталогическая модели, их реализация в PostgreSQL](https://github.com/karillisa/Databases/tree/main/Laboratory%20work%201)

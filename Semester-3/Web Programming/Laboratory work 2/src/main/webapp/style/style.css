@@ -1,0 +1,155 @@
+body {
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    background: #ddd;
+}
+
+div{
+    margin: 5px;
+    font-size: 20px;
+    height: 100%;
+}
+
+#allBody{
+    display: flex;
+}
+
+#bodyA{
+    justify-content: center;
+}
+
+
+#man{
+    margin: 5px;
+    font-size: 20px;
+    height: 100%;
+    justify-content: center;
+}
+
+#table{
+    background-color: #2b358596;
+    display: flex;
+}
+
+.scroll-table table {
+    width:800px;
+    table-layout: fixed;
+    border-style: groove;
+}
+
+#lab1{
+    color: blue;
+}
+
+#chosingValText{
+    display: flex;
+    justify-content: left;
+    color:rgb(77, 0, 73);
+}
+
+.notification {
+    color: white;
+    padding: 1%;
+}
+
+table {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 14px;
+    border-collapse: collapse;
+    text-align: center;
+}
+th, td:first-child {
+    background: #AFCDE7;
+    color: white;
+    padding: 10px 20px;
+}
+th, td {
+    border-style: solid;
+    border-width: 0 1px 1px 0;
+    border-color: white;
+}
+td {
+    background: #D8E6F3;
+}
+th:first-child, td:first-child {
+    text-align: left;
+}
+.select-container{
+    margin-left: 1050px;
+}
+nav {
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    border-bottom: 2px solid #a5a5a5;
+}
+
+nav > img {
+    width: 150px;
+}
+
+nav > p {
+    font-size: 25px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.59);
+}
+
+nav p:last-child {
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.59);
+}
+#pagination {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.pagination-btn {
+    margin: 0 5px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+.pagination-btn.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.pagination-btn:hover {
+    background-color: #0056b3;
+    color: white;
+}
+
+#notification-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
+
+.notification {
+    background-color: #dc3545; /* Красный цвет */
+    color: white;
+    width: 150px; /* Квадрат 150x150 */
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.3s, transform 0.3s;
+    text-align: center;
+    font-size: 16px;
+}
+.notification.show {
+    opacity: 1;
+    transform: scale(1);
+}
+

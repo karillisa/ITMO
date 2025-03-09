@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="jar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/server/server/jar/json-20240303.jar!/" />
+      <root url="jar://$PROJECT_DIR$/server/server/jar/fastcgi-lib.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

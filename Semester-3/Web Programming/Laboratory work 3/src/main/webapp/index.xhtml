@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+    <meta name="viewport" content="initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html" />
+    <h:outputStylesheet library="css" name="style.css" />
+    <title>web3-info</title>
+    <style type="text/css">
+        .ui-analog-clock {
+            width: 200px;
+        }
+    </style>
+
+    <img id="itmo_logo" src="https://itmo.ru/promo/itmo-logo-dark.svg"></img>
+    <h1 id="lab1">Лабораторная работа №3 Гафурова Фарангиз Фуркатовна P3220 вариант 9</h1>
+</h:head>
+
+<h:body>
+
+    <div id="container" class="margin">
+        <div id="main" class="margin">
+            <div id="clock-container" class="margin blured-container round-container">
+                <h:form id="time-form" styleClass="margin">
+                    <p>
+                       <h:outputText id="updateable-time" value="#{timeBean.nowTime}" />
+                    </p>
+                    <p:clock displayMode="analog" mode="server" />
+                    <p:clock pattern="dd.MM.yyyy HH:mm:ss" mode="server" autoSync="true" syncInterval="6000" />
+                </h:form>
+                <h:form id="hiddenForm" style="display:none">
+                    <h:commandButton id="updatePresentDateTime">
+                        <f:ajax render="time-form:updateable-time" />
+                    </h:commandButton>
+                </h:form>
+            </div>
+
+            <div id="redirect-container" class="margin blured-container round-container fit-content-container">
+                <h:form styleClass="margin">
+                    <h:commandButton id="redirect" action="goToPage2" value="Main Page" />
+                </h:form>
+            </div>
+        </div>
+    </div>
+</h:body>
+
+</html>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+    <persistence-unit name="results" transaction-type="JTA">
+        <!-- Класс сущности -->
+        <class>com.web3.web3.model.ResultDataBean</class>
+        <properties>
+            <!-- Использование EclipseLink как провайдера JPA -->
+            <property name="javax.persistence.provider" value="org.eclipse.persistence.jpa.PersistenceProvider"/>
+
+            <!-- JDBC настройки для подключения к PostgreSQL -->
+            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://127.0.0.1:5432/studs"/>
+            <property name="javax.persistence.jdbc.user" value="s373432"/>
+            <property name="javax.persistence.jdbc.password" value="nKbcajFHZgLw1dhx"/>
+
+            <!-- Конфигурация EclipseLink -->
+            <property name="eclipselink.connection-pool.default.initial">10</property>
+            <property name="eclipselink.connection-pool.default.min">10</property>
+            <property name="eclipselink.connection-pool.default.max">100</property>
+
+            <!-- Прочие настройки -->
+            <property name="eclipselink.logging.level" value="FINE"/>
+            <property name="eclipselink.ddl-generation" value="update"/>
+        </properties>
+    </persistence-unit>
+</persistence>

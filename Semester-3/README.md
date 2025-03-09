@@ -15,12 +15,10 @@
 
 ---
 
-## Языки программирования
+## Бизнес-модели основных секторов инновационной экономики
+[Практики](https://github.com/karillisa/ITMO/tree/main/Semester-3/Business%20models/Практики)
 
-### Лабораторные работы
-[3 - Поворот картинки](https://github.com/karillisa/ITMO/tree/main/Semester-3/Programming%20languages/Laboratory%20work%203)
-
-[Курс на Stepik](https://github.com/karillisa/ITMO/tree/main/Semester-3/Programming%20languages/Курс%20на%20Stepik)
+[Домашние занятия](https://github.com/karillisa/ITMO/tree/main/Semester-3/Business%20models/Домашние%20задания)
 
 ---
 
@@ -28,6 +26,15 @@
 [Лекции](https://github.com/karillisa/ITMO/tree/main/Semester-3/Probability%20theory/Лекции)
 
 [Практические занятия](https://github.com/karillisa/ITMO/tree/main/Semester-3/Probability%20theory/Практические%20занятия)
+
+---
+
+## Теория фукнций комплексного переменного
+[ИДЗ](https://github.com/karillisa/ITMO/tree/main/Semester-3/Theory%20of%20functions%20of%20a%20complex%20variable/Индивидуальный%20домашнее%20задание)
+
+### Лаборатоные работы
+[Лабораторная работа № 1](https://github.com/karillisa/ITMO/tree/main/Semester-3/Theory%20of%20functions%20of%20a%20complex%20variable/Лабораторная%20работа%20№1)
+[Лабораторная работа № 2](https://github.com/karillisa/ITMO/tree/main/Semester-3/Theory%20of%20functions%20of%20a%20complex%20variable/Лабораторная%20работа%20№%202)
 
 ---
 
@@ -40,9 +47,11 @@
 
 ---
 
-## Бизнес-модели основных секторов инновационной экономики
-[Практики](https://github.com/karillisa/ITMO/tree/main/Semester-3/Business%20models/Практики)
+## Языки программирования
 
-[Домашние занятия](https://github.com/karillisa/ITMO/tree/main/Semester-3/Business%20models/Домашние%20задания)
+### Лабораторные работы
+[3 - Поворот картинки](https://github.com/karillisa/ITMO/tree/main/Semester-3/Programming%20languages/Laboratory%20work%203)
+
+[Курс на Stepik](https://github.com/karillisa/ITMO/tree/main/Semester-3/Programming%20languages/Курс%20на%20Stepik)
 
 ---

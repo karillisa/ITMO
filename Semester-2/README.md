@@ -34,7 +34,8 @@
 
 ---
 
-[Дискретная математика](https://github.com/karillisa/ITMO/tree/main/Semester-2/Discrete%20mathematics)
+## Дискретная математика
+[Лекции](https://github.com/karillisa/ITMO/tree/main/Semester-2/Discrete%20mathematics)
 
 ---
 

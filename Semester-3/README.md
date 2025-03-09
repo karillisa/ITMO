@@ -13,6 +13,8 @@
 
 [4 - Java EE + React](https://github.com/karillisa/ITMO/tree/main/Semester-3/Web%20Programming/Laboratory%20work%204)
 
+---
+
 ## Языки программирования
 
 ### Лабораторные работы
@@ -27,12 +29,16 @@
 
 [Практические занятия](https://github.com/karillisa/ITMO/tree/main/Semester-3/Probability%20theory/Практические%20занятия)
 
+---
+
 ## Физика
 [Контрольные работы](https://github.com/karillisa/ITMO/tree/main/Semester-3/Physics/Контрольные%20работы)
 
 [Лабораторные работы](https://github.com/karillisa/ITMO/tree/main/Semester-3/Physics/Лабораторные%20работы)
 
 [Практические занятия](https://github.com/karillisa/ITMO/tree/main/Semester-3/Physics/Практические%20занятия)
+
+---
 
 ## Бизнес-модели основных секторов инновационной экономики
 [Практики](https://github.com/karillisa/ITMO/tree/main/Semester-3/Business%20models/Практики)

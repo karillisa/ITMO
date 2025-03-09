@@ -34,6 +34,7 @@
 
 ### Лаборатоные работы
 [Лабораторная работа № 1](https://github.com/karillisa/ITMO/tree/main/Semester-3/Theory%20of%20functions%20of%20a%20complex%20variable/Лабораторная%20работа%20№1)
+
 [Лабораторная работа № 2](https://github.com/karillisa/ITMO/tree/main/Semester-3/Theory%20of%20functions%20of%20a%20complex%20variable/Лабораторная%20работа%20№%202)
 
 ---

@@ -11,3 +11,8 @@
 [3 - JSF](https://github.com/karillisa/ITMO/tree/main/Semester-3/Web%20Programming/Laboratory%20work%203)
 
 [4 - Java EE + React](https://github.com/karillisa/ITMO/tree/main/Semester-3/Web%20Programming/Laboratory%20work%204)
+
+---
+**Лектор:** [Егошин Алексей Васильевич](https://my.itmo.ru/persons/285578?p=1&q=Егошин%20Алексей)
+
+**Практик:** [Карасева Мария Михайловна](https://my.itmo.ru/persons/337607?p=1&q=Мария%20Карасева)

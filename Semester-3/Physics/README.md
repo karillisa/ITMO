@@ -12,3 +12,8 @@
 |***3***|Исследование колебаний физического маятника|[lab_1.05](https://github.com/karillisa/ITMO/blob/main/Semester-3/Physics/Методические%20указания%20к%20лабораторным%20работам/1.05.pdf)|[report](https://github.com/karillisa/ITMO/blob/main/Semester-3/Physics/Лабораторные%20работы/Физика%201.01.pdf)|
 
 </div>
+
+---
+**Лектор:** [Хвастунов Николай Николаевич](https://my.itmo.ru/persons/353669?p=1&q=Хвастунов%20Николай)
+
+**Практик:** [Пулькин Николай Сергеевич](https://my.itmo.ru/persons/174476?p=1&q=Пулькин%20Николай)

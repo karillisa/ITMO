@@ -12,3 +12,9 @@
 [5 - Введение в PHP](https://github.com/karillisa/ITMO/tree/main/Semester-1/Informatic/Laboratory-work-5)
 
 [6 - Работа с системой компьютерной вёрстки TEX](https://github.com/karillisa/ITMO/tree/main/Semester-1/Informatic/Laboratory-work-6)
+
+---
+
+**Лектор:** [Болдырева Елена Александровна](https://my.itmo.ru/persons/157150?p=1&q=Болдырева%20Елена%20Александровна)
+
+**Практик:** [Болдырева Елена Александровна](https://my.itmo.ru/persons/157150?p=1&q=Болдырева%20Елена%20Александровна)

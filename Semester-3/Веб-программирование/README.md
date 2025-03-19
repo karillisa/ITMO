@@ -12,6 +12,10 @@
 
 [4 - Java EE + React](https://github.com/karillisa/ITMO/tree/main/Semester-3/Web%20Programming/Laboratory%20work%204)
 
+### Рубежный контроль
+[Рубежка 1](https://docs.google.com/document/d/1EcU30va5Jw-w056KcXzSysrjnbR3xNeSP6x8EhquWZA/edit?tab=t.0#heading=h.5xocd8wh7ln)
+[Рубежка 2]()
+
 ---
 **Лектор:** [Егошин Алексей Васильевич](https://my.itmo.ru/persons/285578?p=1&q=Егошин%20Алексей)
 

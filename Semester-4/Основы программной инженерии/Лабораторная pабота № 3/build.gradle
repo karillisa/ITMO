@@ -1,0 +1,389 @@
+import org.gradle.internal.os.OperatingSystem
+import java.security.MessageDigest
+
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group 'com.web3'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    junitVersion = '5.9.2'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+dependencies {
+    compileOnly('jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1')
+    compileOnly('jakarta.validation:jakarta.validation-api:3.0.0')
+    compileOnly('jakarta.ejb:jakarta.ejb-api:4.0.0')
+    compileOnly('jakarta.faces:jakarta.faces-api:3.0.0')
+    compileOnly('jakarta.servlet:jakarta.servlet-api:5.0.0')
+    implementation('org.hibernate:hibernate-core:6.0.2.Final')
+    implementation('org.postgresql:postgresql:42.2.27')
+    implementation('org.glassfish.jaxb:jaxb-runtime:3.0.2')
+    implementation('org.primefaces:primefaces:13.0.0:jakarta')
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+
+// ———————— Чтение параметров из gradle.properties ————————
+
+def wildflyHome = project.hasProperty('wildflyHome') ? project.property('wildflyHome') : 'default/path'
+def svnRepoUrl = project.hasProperty('svnRepoUrl') ? project.property('svnRepoUrl') : ''
+def mainClass = project.hasProperty('mainClass') ? project.property('mainClass') : 'com.example.Main'
+
+// ———————— Вспомогательные функции ————————
+
+def md5(File file) {
+    MessageDigest digest = MessageDigest.getInstance("MD5")
+    file.withInputStream { is -> digest.update(is.readAllBytes()) }
+    return digest.digest().encodeHex()
+}
+
+def sha1(File file) {
+    MessageDigest digest = MessageDigest.getInstance("SHA-1")
+    file.withInputStream { is -> digest.update(is.readAllBytes()) }
+    return digest.digest().encodeHex()
+}
+
+def execOutput(String... args) {
+    def stdout = new ByteArrayOutputStream()
+    exec {
+        commandLine args
+        standardOutput = stdout
+    }
+    return stdout.toString().trim()
+}
+
+def isSvnAvailable() {
+    try {
+        def version = execOutput('svn', '--version', '--quiet')
+        println "SVN версия: $version"
+        return true
+    } catch (Exception e) {
+        println "SVN не установлен или недоступен в PATH."
+        return false
+    }
+}
+
+// ———————— Задачи ————————
+
+// clean — очистка проекта
+tasks.clean {
+    doLast {
+        assert !file('build').exists() : "❌ Директория build не удалена!"
+        println '✅ clean: build директория успешно удалена'
+    }
+}
+
+// music — проигрывание звука после сборки
+tasks.register('music') {
+    dependsOn tasks.named('build')
+    doLast {
+        def musicFile = file('everythingSucks.mp3')
+        if (musicFile.exists()) {
+            exec {
+                commandLine 'cmd', '/c', "start ${musicFile.absolutePath}"
+            }
+            println '✅ Музыка воспроизведена'
+        } else {
+            println "❌ Музыкальный файл не найден: ${musicFile.absolutePath}"
+        }
+    }
+}
+
+// compileRes — копирование ресурсов
+tasks.register('compileRes', Copy) {
+    from sourceSets.main.resources
+    into "$buildDir/resources/main"
+    doLast {
+        def resDir = file("$buildDir/resources/main")
+        assert resDir.exists() : "❌ Ресурсы не скопированы"
+        println '✅ compileRes: Ресурсы успешно скопированы'
+    }
+}
+
+// compile — компиляция исходников
+tasks.register('compile', JavaCompile) {
+    dependsOn 'clean', 'compileRes'
+    source = sourceSets.main.java
+    destinationDirectory = file("$buildDir/classes/java/main")
+    classpath = sourceSets.main.compileClasspath
+    options.encoding = 'UTF-8'
+    options.compilerArgs = ['-Xlint:unchecked', '-Xlint:deprecation']
+    options.fork = true
+}
+
+// build — сборка JAR
+task myBuild(type: Jar) {
+    dependsOn 'compile'
+    archiveBaseName.set('my-project')
+    destinationDirectory.set(file("$buildDir/myjars"))
+    from sourceSets.main.output
+    manifest {
+        attributes(
+                'Main-Class': 'com.example.Main',
+                'Implementation-Version': project.version
+        )
+    }
+}
+
+// test — запуск тестов
+tasks.register('testTask') {
+    dependsOn tasks.test
+    doLast {
+        def report = file("$buildDir/reports/tests/test/index.html")
+        assert report.exists() : "❌ HTML-отчет о тестировании не найден"
+        println "✅ Все тесты успешно выполнены. Отчет доступен: $report"
+    }
+}
+
+javadoc {
+    source = sourceSets.main.allJava
+    classpath = sourceSets.main.compileClasspath
+    options {
+        encoding = 'UTF-8'
+        charSet = 'UTF-8'
+        docEncoding = 'UTF-8'
+        author true
+        version true
+    }
+}
+
+// doc — генерация JavaDoc + MD5/SHA-1 в MANIFEST
+tasks.register('doc', Zip) {
+    group = 'Documentation'
+    description = 'Генерирует JavaDoc и добавляет хэши в MANIFEST'
+    archiveBaseName.set('project-doc')
+    destinationDirectory.set(file("$buildDir/libs"))
+
+    from(javadoc) {
+        into("javadoc")
+    }
+
+    doFirst {
+        def manifestDir = file("$buildDir/tmp/manifest")
+        def manifestFile = new File(manifestDir, "MANIFEST.MF")
+        manifestDir.mkdirs()
+        def manifestContent = new StringBuilder()
+
+        manifestContent << "Manifest-Version: 1.0\r\n"
+        manifestContent << "Implementation-Title: My Project\r\n"
+        manifestContent << "Implementation-Version: ${project.version}\r\n"
+
+        def classesDir = sourceSets.main.output.classesDirs.first().absolutePath
+        def allFiles = []
+        allFiles += fileTree(dir: 'src/main/java', include: '**/*.java').files
+        allFiles += fileTree(dir: classesDir, include: '**/*.class').files
+
+        allFiles.each { file ->
+            def relativePath = file.absolutePath.replace(project.projectDir.absolutePath + File.separator, '')
+            def md5Hash = md5(file)
+            def sha1Hash = sha1(file)
+            manifestContent << "Hashes: $relativePath: MD5=$md5Hash, SHA1=$sha1Hash\r\n"
+        }
+
+        manifestFile.write(manifestContent.toString(), 'UTF-8')
+    }
+
+    from("$buildDir/tmp/manifest") {
+        into("META-INF")
+    }
+}
+
+// xml — валидация XML-файлов
+tasks.register('xml') {
+    doLast {
+        def xmlFiles = fileTree('src/main/resources').include('**/*.xml')
+        if (xmlFiles.isEmpty()) {
+            println "⚠️ XML-файлы не найдены для валидации"
+            return
+        }
+        xmlFiles.each { file ->
+            try {
+                new XmlSlurper().parse(file)
+                println "✅ XML-файл валиден: ${file.name}"
+            } catch (Exception e) {
+                throw new GradleException("❌ Невалидный XML-файл: ${file.name} — ${e.message}")
+            }
+        }
+    }
+}
+
+// env — запуск в разных окружениях
+def envParamsFile = file('env-params.txt')
+
+task startWildfly {
+    group = 'Deployment'
+    description = 'Запускает WildFly с параметрами из env-params.txt'
+
+    doLast {
+        if (!envParamsFile.exists()) {
+            throw new GradleException("❌ Файл параметров ${envParamsFile} не найден!")
+        }
+
+        def wildflyBinStr = "${wildflyHome}/bin/standalone.bat".toString()
+
+        envParamsFile.eachLine { line ->
+            def parts = line.split(/\s+/, 2)
+            def javaVersion = parts[0]
+            def jvmArgs = parts.length > 1 ? parts[1] : ''
+
+            def javaHome = "C:/Users/gafur/devtools/jdk/oracle/openjdk-${javaVersion}".toString()
+            assert file("${javaHome}/bin/java.exe").exists() : "JDK не найден по пути: $javaHome"
+
+            println "Запуск WildFly с Java $javaVersion и опциями: $jvmArgs"
+
+            try {
+                exec {
+                    commandLine wildflyBinStr, '-b', '0.0.0.0'
+                }
+                println "✅ Сервер успешно запущен"
+            } catch (Exception e) {
+                throw new GradleException("❌ Ошибка при запуске WildFly: $e.message")
+            }
+        }
+    }
+}
+
+task stopWildfly(type: Exec) {
+    commandLine 'taskkill', '/F', '/IM', 'java.exe'
+    doLast {
+        println '✅ Сервер остановлен'
+    }
+}
+
+task envV {
+    dependsOn war, startWildfly
+    group = 'Deployment'
+    description = 'Сборка, развертывание и запуск приложения в WildFly'
+}
+
+// report — сохранение отчёта тестов в Git
+tasks.register('report') {
+    dependsOn tasks.test
+    doLast {
+        def resultsDir = file("$buildDir/test-results/test")
+        def failed = resultsDir.listFiles().findAll { it.name.endsWith('.xml') }.find { xml ->
+            def result = new XmlSlurper().parse(xml)
+            result.'**'.findAll { it.name() == 'testcase' }.find { it.@failure || it.@error }
+        }
+
+        if (failed != null) {
+            println "Предупреждение: есть упавшие тесты! См. $failed"
+        } else {
+            println "Все тесты прошли успешно!"
+        }
+
+        exec {
+            commandLine 'git', 'add', resultsDir
+        }
+        exec {
+            commandLine 'git', 'commit', '-m', 'Test report updated'
+        }
+        println 'Тестовый отчет успешно сохранён в Git'
+    }
+}
+// team — сборка предыдущих ревизий из SVN
+tasks.register('team') {
+    doLast {
+        def outputDir = file("build/team")
+        outputDir.mkdirs()
+        def currentRev = Integer.parseInt(execOutput('svn', 'info').find(/Revision: (\d+)/).split()[-1])
+        println "Текущая ревизия: $currentRev"
+        def revisions = []
+        (0..2).each { i ->
+            def revNum = currentRev - i
+            if (revNum > 0) {
+                revisions.add(revNum.toString())
+            }
+        }
+
+        def repoUrl = svnRepoUrl ?: "file:///C:/svn_repos/web3-repo"
+        revisions.each { rev ->
+            def revDir = new File(outputDir, "rev_$rev")
+            revDir.mkdirs()
+            delete revDir.listFiles()
+            println "Экспорт ревизии $rev из SVN..."
+            exec {
+                commandLine 'svn', 'export', "-r$rev", "--force", "${repoUrl}@${rev}", revDir
+            }
+            ['.git', '.gradle', 'build'].each { dir ->
+                def folder = new File(revDir, dir)
+                if (folder.exists()) {
+                    delete folder
+                    println "Удалён каталог: $dir"
+                }
+            }
+
+            copy {
+                from 'gradle'
+                into new File(revDir, 'gradle')
+            }
+            copy {
+                from 'gradlew'
+                into revDir
+                fileMode = 0755
+            }
+            copy {
+                from 'gradlew.bat'
+                into revDir
+            }
+            copy {
+                from 'build.gradle'
+                into revDir
+            }
+            copy {
+                from 'settings.gradle'
+                into revDir
+            }
+
+            def wrapperJar = new File(revDir, 'gradle/wrapper/gradle-wrapper.jar')
+            if (!wrapperJar.exists()) {
+                throw new GradleException("Файл gradle-wrapper.jar не найден в ревизии $rev")
+            }
+
+            try {
+                def gradlew = new File(revDir, OperatingSystem.current().isWindows() ? 'gradlew.bat' : 'gradlew')
+                if (!gradlew.exists()) {
+                    throw new GradleException("Файл gradlew не найден в $revDir")
+                }
+                gradlew.setExecutable(true)
+                exec {
+                    workingDir = revDir
+                    commandLine gradlew.absolutePath, '--no-daemon', 'build'
+                }
+
+                def warFile = new File(revDir, "build/libs/${project.name}-${project.version}.war")
+                if (warFile.exists()) {
+                    def zipFile = new File(outputDir, "rev_${rev}.zip")
+                    ant.zip(destfile: zipFile) {
+                        fileset(dir: revDir) {
+                            include(name: "**/*.war")
+                        }
+                    }
+                    println "Архив создан: $zipFile"
+                } else {
+                    println "WAR-файл не найден для ревизии $rev"
+                }
+            } catch (Exception e) {
+                println "Ошибка при сборке ревизии $rev: ${e.message}"
+            }
+        }
+        println "Все ревизии обработаны. Архивы находятся в $outputDir"
+    }
+}

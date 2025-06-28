@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.web3.web3.model.AreaChecker" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-06-20T18:12:11" hostname="DESKTOP-HTD4P36" time="0.01">
+  <properties/>
+  <testcase name="test()" classname="com.web3.web3.model.AreaChecker" time="0.01"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

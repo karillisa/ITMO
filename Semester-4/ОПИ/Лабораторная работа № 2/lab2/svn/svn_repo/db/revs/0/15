@@ -1,0 +1,89 @@
+id: 1-4.0.r15/0
+type: file
+pred: 1-4.0.r12/275
+count: 9
+text: 4 0 515 498 b1d26cfc6f3e425e04504f5343fe5d41 701365440b5db796f1a253a191e7b4b663495dae 14-e/_2
+cpath: /trunk/C.java
+copyroot: 0 /
+
+id: 2-14.0-15.r15/192
+type: file
+pred: 2-14.0-13.r14/351
+count: 1
+text: 14 0 113 100 39d629a3fb0cbbd916731117f485f117 bc1a7dc37498fa6d75cddce0a3d84633af9d41ca 13-d/_4
+cpath: /trunk/tLWeEXDkqT.Z4t
+copyfrom: 14 /branches/branch3/tLWeEXDkqT.Z4t
+
+PLAIN
+K 6
+C.java
+V 16
+file 1-4.0.r15/0
+K 6
+F.java
+V 17
+file 3-4.0.r4/953
+K 6
+G.java
+V 18
+file 4-4.0.r4/1125
+K 6
+H.java
+V 18
+file 5-4.0.r4/1298
+K 14
+tLWeEXDkqT.Z4t
+V 22
+file 2-14.0-15.r15/192
+END
+ENDREP
+PLAIN
+K 13
+svn:mergeinfo
+V 23
+/branches/branch3:13-14
+END
+ENDREP
+id: 0-1.0.r15/702
+type: dir
+pred: 0-1.0.r12/624
+count: 10
+text: 15 435 189 189 38b8127786ed75fff5c8ddbd45734a62
+props: 15 637 52 52 8800baf4042c8742c478c2f5b0469011
+cpath: /trunk
+copyroot: 0 /
+minfo-cnt: 1
+minfo-here: y
+
+PLAIN
+K 8
+branches
+V 18
+dir 0-2.0.r14/1001
+K 4
+tags
+V 14
+dir 0-3.0.r3/0
+K 5
+trunk
+V 17
+dir 0-1.0.r15/702
+END
+ENDREP
+id: 0.0.r15/1039
+type: dir
+pred: 0.0.r14/1259
+count: 15
+text: 15 923 103 103 81b4dd917dc207f8137d79b93985b7f3
+cpath: /
+copyroot: 0 /
+minfo-cnt: 1
+
+0-1.0.t14-e modify-dir false true /trunk
+
+1-4.0.t14-e modify-file true false /trunk/C.java
+
+2-14._0.t14-e add-file false false /trunk/tLWeEXDkqT.Z4t
+14 /branches/branch3/tLWeEXDkqT.Z4t
+
+1039 1186
